@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}ECAT Master - Pakistan's Best ECAT Preparation{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section - FIRST THING USERS SEE -->
+<section class="hero">
+    <div class="container">
+        <h1>ACE Your ECAT Exam</h1>
+        <p>Comprehensive preparation with quizzes, past papers, and study notes</p>
+        <a href="#subjects-section" class="btn btn-large">Start Learning Now</a>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+    <div class="container">
+        <div class="stat-item">
+            <h3>500+</h3>
+            <p>Practice Questions</p>
+        </div>
+        <div class="stat-item">
+            <h3>50+</h3>
+            <p>Past Papers</p>
+        </div>
+        <div class="stat-item">
+            <h3>100+</h3>
+            <p>Study Notes</p>
+        </div>
+    </div>
+</section>
+
+<!-- Subjects Section (revealed after clicking Start Learning) -->
+<section id="subjects-section" class="card">
+    <h1>Welcome to ECAT Master! 👨‍🎓</h1>
+    <p>Select a subject to begin your preparation:</p>
+
+    <div class="grid">
+        {% for subject in subjects %}
+        <div class="grid-item">
+            <h2>{{ subject }}</h2>
+            <a href="{{ url_for('topics', subject=subject) }}" class="btn btn-primary">Explore Topics</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Why Choose Section -->
+<div class="card">
+    <h2>Why Choose ECAT Master?</h2>
+    <div style="text-align: left; margin: 1rem 0;">
+        <p>✅ Real past paper questions</p>
+        <p>✅ Detailed explanations</p>
+        <p>✅ Progress tracking</p>
+        <p>✅ Mobile-friendly design</p>
+        <p>✅ Complete ECAT syllabus coverage</p>
+    </div>
+</div>
+
+{% endblock %}

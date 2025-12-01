@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}{{ subject }} - {{ topic }}{% endblock %}
+
+{% block content %}
+<div class="quiz-container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h1>{{ subject }} - {{ topic }}</h1>
+        <span style="background: var(--secondary); color: white; padding: 5px 15px; border-radius: 20px;">
+            Question {{ question_number }} of {{ total_questions }}
+        </span>
+    </div>
+
+    <div class="question">
+        <h2>{{ question[3] }}</h2>
+    </div>
+
+    <form action="/check_answer" method="post">
+        <input type="hidden" name="question_id" value="{{ question[0] }}">
+        <input type="hidden" name="subject" value="{{ subject }}">
+        <input type="hidden" name="topic" value="{{ topic }}">
+        <input type="hidden" name="question_number" value="{{ question_number }}">
+        <input type="hidden" name="total_questions" value="{{ total_questions }}">
+        
+        <label class="option">
+            <input type="radio" name="answer" value="{{ question[4] }}" required>
+            <strong>A.</strong> {{ question[4] }}
+        </label>
+        
+        <label class="option">
+            <input type="radio" name="answer" value="{{ question[5] }}">
+            <strong>B.</strong> {{ question[5] }}
+        </label>
+        
+        <label class="option">
+            <input type="radio" name="answer" value="{{ question[6] }}">
+            <strong>C.</strong> {{ question[6] }}
+        </label>
+        
+        <label class="option">
+            <input type="radio" name="answer" value="{{ question[7] }}">
+            <strong>D.</strong> {{ question[7] }}
+        </label>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <button type="submit" class="btn btn-success" style="padding: 15px 40px; font-size: 1.2rem;">
+                Submit Answer ✅
+            </button>
+        </div>
+    </form>
+</div>
+
+<div style="text-align: center; margin-top: 1rem;">
+    <a href="{{ url_for('topics', subject=subject) }}" class="btn btn-primary">← Back to Topics</a>
+    <a href="{{ url_for('home') }}" class="btn">🏠 Home</a>
+</div>
+{% endblock %}

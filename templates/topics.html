@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ subject }} - Topics{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>{{ subject }} 📚</h1>
+    <p>Select a topic to begin:</p>
+    <a href="{{ url_for('home') }}" class="btn btn-primary">← Back to Subjects</a>
+</div>
+
+<div class="grid">
+    {% for topic in topics %}
+    <div class="grid-item">
+        <h2>{{ topic }}</h2>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+            <a href="{{ url_for('notes', subject=subject, topic=topic) }}" class="btn btn-info">📚 Study Notes</a>
+            <a href="{{ url_for('quiz', subject=subject, topic=topic) }}" class="btn btn-success">✅ Take Quiz</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

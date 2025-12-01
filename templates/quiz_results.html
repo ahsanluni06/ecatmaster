@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Results - {{ subject }} - {{ topic }}{% endblock %}
+
+{% block content %}
+<div class="quiz-container" style="text-align: center;">
+    <h1>Quiz Completed! 🎉</h1>
+    <h2>{{ subject }} - {{ topic }}</h2>
+    
+    <div style="font-size: 2rem; margin: 2rem 0;">
+        <p>Your Score: <strong>{{ score }}/{{ total_questions }}</strong></p>
+        <p>Percentage: <strong>{{ (score/total_questions*100)|round(2) }}%</strong></p>
+    </div>
+    
+    <div style="margin: 2rem 0;">
+        {% if score/total_questions >= 0.8 %}
+            <p style="color: green; font-size: 1.5rem;">Excellent! 🎯</p>
+        {% elif score/total_questions >= 0.6 %}
+            <p style="color: blue; font-size: 1.5rem;">Good Job! 👍</p>
+        {% else %}
+            <p style="color: orange; font-size: 1.5rem;">Keep Practicing! 📚</p>
+        {% endif %}
+    </div>
+    
+    <div style="text-align: center;">
+        <a href="{{ url_for('quiz', subject=subject, topic=topic) }}" class="btn btn-success">
+            Try Again 🔄
+        </a>
+        
+        <a href="{{ url_for('topics', subject=subject) }}" class="btn btn-primary">
+            Choose Another Topic
+        </a>
+        
+        <a href="{{ url_for('home') }}" class="btn">
+            Home 🏠
+        </a>
+    </div>
+</div>
+{% endblock %}
